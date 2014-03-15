@@ -27,7 +27,7 @@ if [ "$OPTION" == "y" ]; then
     #git commit -m "$MESSAGE" && \
     #git push && \
 
-    git push heroku hackalovers:master && \
+    git push heroku master && \
     heroku config:add NODE_ENV=production && \
     heroku config:add TWITTER_CONSUMER_KEY=$TWITTER_CONSUMER_KEY && \
     heroku config:add TWITTER_CONSUMER_SECRET=$TWITTER_CONSUMER_SECRET && \

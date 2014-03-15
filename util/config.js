@@ -15,14 +15,15 @@ var development = {
         result_type         : "",  // none(:mixed), recent or popular
     },
     sendTweet               : false,
-    cacheInMinutes          : 30,
+    cacheInMinutes          : 10,
     textalytics         : {
         key                 : process.env.TEXTALYTICS_KEY,
         url                 : 'https://textalytics.com/core/sentiment-1.1',
         model               : 'es-general' // none (automatic), es-general, en-general, fr-general
     },
-    rowLimit                : 100,
-    showAllRoutes           : true
+    rowLimit                : 150,
+    showAllRoutes           : true,
+    searchAndAnalyzeTweets  : true
 }
 
 var stage = {
@@ -49,7 +50,8 @@ var stage = {
         model               : 'es-general' // none (automatic), es-general, en-general, fr-general
     },
     rowLimit                : 20,
-    showAllRoutes           : true
+    showAllRoutes           : true,
+    searchAndAnalyzeTweets  : true
 }
 
 var production = {
@@ -76,7 +78,8 @@ var production = {
         model               : 'es-general' // none (automatic), es-general, en-general, fr-general
     },
     rowLimit                : 100,
-    showAllRoutes           : false
+    showAllRoutes           : false,
+    searchAndAnalyzeTweets  : true
 }
 
 var env = process.env.NODE_ENV;

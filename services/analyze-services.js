@@ -1,4 +1,5 @@
 var MovieService  = require('./movie-services.js');
+var Normalize     = require('../util/normalize-text.js');
 var NormalizeText = require('../util/normalize-text.js');
 var Config        = require('../util/config.js');
 var SearchTweets  = require('../util/search-tweets.js');
@@ -35,7 +36,20 @@ var analyzeAllMovies = function() {
                     options.movie = movies[i];
                     options.movie.movie_title = movies[i].movie_title.trim();
 
-                    searchTweets(options);
+                    if ( Config.properties.searchAndAnalyzeTweets ) {
+
+                        searchTweets(options);
+
+                    } else {
+
+                        options.tweets = options.movie.tweets;
+                        options.tweetsText = options.movie.tweetsText;
+                        options.score = options.movie.score;
+                        options.scoreTag = options.movie.scoreTag;
+                        options.movie.movie_title_normalized = Normalize.normalizeTitle(options.movie.movie_title);
+                        updateMovie(options);
+                    }
+                    
                 }
             }
         },

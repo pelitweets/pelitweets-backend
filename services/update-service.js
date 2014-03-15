@@ -1,4 +1,5 @@
 var MovieService  = require('./movie-services.js');
+var Normalize     = require('../util/normalize-text.js');
 var NormalizeText = require('../util/normalize-text.js');
 var Config        = require('../util/config.js');
 var SearchTweets  = require('../util/search-tweets.js');
@@ -115,6 +116,7 @@ var updateMovie = function(options) {
 
     var movie = options.movie;
 
+    movie.movie_title_normalized = Normalize.normalizeTitle(options.movie.movie_title);
     movie.movie_rating_score     = options.score;
     movie.movie_rating_score_tag = options.scoreTag;
     movie.movie_rating_average   = ratingAverage(movie);

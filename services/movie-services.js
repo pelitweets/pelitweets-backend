@@ -1,5 +1,6 @@
-var Movie  = require('../models/movie.js');
-var Config = require('../util/config.js');
+var Movie       = require('../models/movie.js');
+var Config      = require('../util/config.js');
+var Normalize   = require('../util/normalize-text.js');
 
 var findAllMovies = function(options) {
 
@@ -18,6 +19,7 @@ var findAllMovies = function(options) {
         .sort({'movie_rating_average': -1})
         .select('_id '+
                 'movie_title '+
+                'movie_title_normalized '+
                 'movie_original_title '+
                 'movie_runtime '+
                 'movie_plot '+
@@ -141,6 +143,7 @@ var createOrUpdateMovie = function(options) {
 
     var movie = options.movie || new Movie({
         movie_title:            options.movie_title,
+        movie_title_normalized: Normalize.normalizeTitle(options.movie_title),
         movie_original_title:   options.movie_original_title,
         movie_runtime:          options.movie_runtime,
         movie_plot:             options.movie_plot,
@@ -184,6 +187,7 @@ var findMovieByIdAndUpdate = function(options) {
         onSuccess: function(movie) {
 
             movie.movie_title            = options.movie_title;
+            movie.movie_title_normalized = Normalize.normalizeTitle(options.movie_title);
             movie.movie_original_title   = options.movie_original_title;
             movie.movie_runtime          = options.movie_runtime;
             movie.movie_plot             = options.movie_plot;
