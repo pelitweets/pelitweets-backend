@@ -14,6 +14,7 @@ var findAllMovies = function(options) {
     };
 
     Movie.find({})
+        .sort({'movie_release_date': -1})
         .sort({'movie_rating_average': -1})
         .select('_id '+
                 'movie_title '+
