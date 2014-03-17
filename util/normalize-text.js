@@ -1,6 +1,8 @@
 var from = "ÃÀÁÄÂÈÉËÊÌÍÏÎÒÓÖÔÙÚÜÛãàáäâèéëêìíïîòóöôùúüû";
 var to   = "AAAAAEEEEIIIIOOOOUUUUaaaaaeeeeiiiioooouuuu";
-var mapping = {};
+
+var letterNumber = /^[0-9a-zA-ZñÑ]+$/;  
+var mapping      = {};
 
 for(var i = 0, j = from.length; i < j; i++ ) {
     mapping[ from.charAt( i ) ] = to.charAt( i );
@@ -9,6 +11,7 @@ for(var i = 0, j = from.length; i < j; i++ ) {
 var normalizeTitle = function( text ) {
 
     var array = [];
+    var text = text.toLowerCase();
 
     for( var i = 0, j = text.length; i < j; i++ ) {
 
@@ -20,9 +23,12 @@ var normalizeTitle = function( text ) {
 
         } else {
 
-            if ( c == ' ' ) {
+            if ( c === ' ' ) {
+                
                 array.push( '-' );
-            } else {
+                
+            } else if ( c.match(letterNumber) ) {
+                    
                 array.push( c );
             }
         }
@@ -31,6 +37,23 @@ var normalizeTitle = function( text ) {
     var titleNormalized = array.join( '' );
 
     return titleNormalized;
+};
+
+var testNormalizeTitle = function() {
+
+    var title    = "300:/- Hola, ¿estáis todos los niños?";
+    var expected = "300-hola-estais-todos-los-niños"
+    
+    var result = normalizeTitle(title);
+
+    if ( result !== expected ) {
+        console.log('------------------------------');
+        console.log('expected =', expected);
+        console.log('result   =', result);
+        console.log('------------------------------');
+    } else {
+        console.log('ok');
+    }
 };
 
 var normalizeText = function( text ) {
@@ -80,3 +103,4 @@ exports.normalizeText = normalizeText;
 exports.normalizeTitle = normalizeTitle;
 
 //testNormalizeText();
+//testNormalizeTitle();

@@ -1,12 +1,10 @@
 var MovieService  = require('./movie-services.js');
-var Normalize     = require('../util/normalize-text.js');
-var NormalizeText = require('../util/normalize-text.js');
 var Config        = require('../util/config.js');
 var SearchTweets  = require('../util/search-tweets.js');
 var AnalyzeText   = require('../util/analyze-text.js');
 var SendTweet     = require('../util/send-tweet.js');
-var Mongoose      = require('mongoose');
 var Util          = require('../util/util.js');
+var Normalize     = require('../util/normalize-text.js');
 
 var analyzeAllMovies = function() {
 
@@ -35,6 +33,7 @@ var analyzeAllMovies = function() {
                     options.movies = movies.length;
                     options.movie = movies[i];
                     options.movie.movie_title = movies[i].movie_title.trim();
+                    options.movie.movie_title_normalized = Normalize.normalizeTitle(options.movie.movie_title);
 
                     if ( Config.properties.searchAndAnalyzeTweets ) {
 
@@ -46,7 +45,6 @@ var analyzeAllMovies = function() {
                         options.tweetsText = options.movie.tweetsText;
                         options.score = options.movie.score;
                         options.scoreTag = options.movie.scoreTag;
-                        options.movie.movie_title_normalized = Normalize.normalizeTitle(options.movie.movie_title);
                         updateMovie(options);
                     }
                     
