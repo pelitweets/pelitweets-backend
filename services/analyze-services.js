@@ -10,7 +10,7 @@ var analyzeAllMovies = function() {
 
     console.log('services/analyze-services.js/analyzeAllMovies');
 
-    MovieService.findAllMovies({
+    MovieService.findMoviesToUpdate({
 
         onSuccess: function(movies) {
 
@@ -164,7 +164,7 @@ var updateRatings = function(options) {
     movie.movie_rating_average = Util.roundWithDecimals((sumRating / ratings), 1);
 
     if ( Util.isNumber(movie.movie_rating_average) ) {
-        SendTweet.sendTweet(options.movie.movie_title, movie.movie_rating_average);
+        SendTweet.sendTweet(movie);
     } else {
         movie.movie_rating_average = 'NaN';
     }

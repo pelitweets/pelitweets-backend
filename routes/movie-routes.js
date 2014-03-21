@@ -5,7 +5,7 @@ module.exports = function(app) {
     var AddRoute     = require('../util/add-route.js');
 
     // GET - Return all movies in the DB
-    var findMovies = function(req, res) {
+    var findAllMovies = function(req, res) {
 
         console.log('GET - routes/movie-routes.js/findMovies');
 
@@ -21,6 +21,23 @@ module.exports = function(app) {
         });
     };
 
+    // GET - Return all movies in the DB
+    var findMoviesToUpdate = function(req, res) {
+
+        console.log('GET - routes/movie-routes.js/findMoviesToUpdate');
+
+        MovieService.findMoviesToUpdate({
+
+            onSuccess: function(movies) {
+                res.jsonp(movies);
+            },
+
+            onError: function(error) {
+                res.jsonp({error:error});
+            }
+        });
+    };
+    
     // GET - Return a movie with specified ID
     var findMovie = function(req, res) {
 
@@ -74,8 +91,17 @@ module.exports = function(app) {
         method      : 'get',
         url         : 'movies',
         description : 'Return all movies '
-                    + '(max='+Config.properties.rowLimit+') ordered by date',
-        callback    : findMovies
+                    + '(max='+Config.properties.rowLimit+') ordered by released date and score',
+        callback    : findAllMovies
+    });
+
+    AddRoute.addRoute({
+        app         : app,
+        method      : 'get',
+        url         : 'movies-to-update',
+        description : 'Return all movies to update'
+                    + '(max='+Config.properties.rowLimit+') ordered by updated date',
+        callback    : findMoviesToUpdate
     });
 
     AddRoute.addRoute({

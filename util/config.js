@@ -14,16 +14,16 @@ var development = {
         count               : 100, // max 100
         result_type         : "",  // none(:mixed), recent or popular
     },
-    sendTweet               : false,
-    cacheInMinutes          : 0,
+    sendTweet               : true,
+    cacheInMinutes          : 1,
     textalytics         : {
         key                 : process.env.TEXTALYTICS_KEY,
         url                 : 'https://textalytics.com/core/sentiment-1.1',
         model               : 'es-general' // none (automatic), es-general, en-general, fr-general
     },
-    rowLimit                : 150,
+    rowLimit                : 1,
     showAllRoutes           : true,
-    searchAndAnalyzeTweets  : false
+    searchAndAnalyzeTweets  : true
 }
 
 var stage = {

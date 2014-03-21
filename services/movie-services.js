@@ -2,7 +2,7 @@ var Movie       = require('../models/movie.js');
 var Config      = require('../util/config.js');
 var Normalize   = require('../util/normalize-text.js');
 
-var findAllMovies = function(options) {
+var findAllMovies = function (options) {
 
     console.log('services/movie-services.js/findAllMovies');
     //console.log('options=', options);
@@ -35,6 +35,40 @@ var findAllMovies = function(options) {
                 'movie_poster_link '+
                 'movie_analyzed_date')
         .limit(Config.properties.rowLimit)
+    
+        .exec(function(error, movies) {
+
+        if(!error) {
+
+            printMovies(movies);
+            options.onSuccess(movies);
+
+        } else {
+
+            console.log('ERROR retrieving movies: ' + error);
+            options.onError(error);
+        }
+    });
+};
+
+
+var findMoviesToUpdate = function(options) {
+
+    console.log('services/movie-services.js/findAllMovies');
+    //console.log('options=', options);
+
+    options.onSuccess = options.onSuccess || function() {
+        console.log("onSuccess function not implemented");
+    };
+    options.onError   = options.onError   || function() {
+        console.log("onError function not implemented");
+    };
+
+    Movie.find({})
+        .where('movie_rating_score').equals('NaN')
+        .sort({'movie_analyzed_date': 1})
+        .limit(Config.properties.rowLimit)
+    
         .exec(function(error, movies) {
 
         if(!error) {
@@ -270,6 +304,7 @@ var printMovie = function(movie, message) {
 };
 
 exports.findAllMovies          = findAllMovies;
+exports.findMoviesToUpdate     = findMoviesToUpdate;
 exports.findMovieById          = findMovieById;
 exports.findMovieByTitle       = findMovieByTitle;
 exports.createOrUpdateMovie    = createOrUpdateMovie;
