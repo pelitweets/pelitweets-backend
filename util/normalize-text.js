@@ -10,6 +10,10 @@ for(var i = 0, j = from.length; i < j; i++ ) {
 
 var normalizeTitle = function( text ) {
 
+    if ( !text ) {
+        return "";
+    }
+    
     var array = [];
     var text = text.toLowerCase();
 

@@ -4,6 +4,7 @@ var Schema   = mongoose.Schema;
 var movie = new Schema({
     movie_title:            { type: String, required: true },
     movie_title_normalized: { type: String, required: true },
+    movie_id_normalized:    { type: String, required: true },
     movie_original_title:   { type: String, required: true },
     movie_runtime:          { type: String, required: true },
     movie_plot:             { type: String, required: true },

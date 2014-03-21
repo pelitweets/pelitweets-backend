@@ -34,6 +34,7 @@ var analyzeAllMovies = function() {
                     options.movie = movies[i];
                     options.movie.movie_title = movies[i].movie_title.trim();
                     options.movie.movie_title_normalized = Normalize.normalizeTitle(options.movie.movie_title);
+                    options.movie.movie_id_normalized = options.movie.movie_title_normalized+'-'+options.movie._id;
 
                     if ( Config.properties.searchAndAnalyzeTweets ) {
 

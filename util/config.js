@@ -14,7 +14,7 @@ var development = {
         count               : 100, // max 100
         result_type         : "",  // none(:mixed), recent or popular
     },
-    sendTweet               : true,
+    sendTweet               : false,
     cacheInMinutes          : 1,
     textalytics         : {
         key                 : process.env.TEXTALYTICS_KEY,
@@ -23,7 +23,7 @@ var development = {
     },
     rowLimit                : 1,
     showAllRoutes           : true,
-    searchAndAnalyzeTweets  : true
+    searchAndAnalyzeTweets  : false
 }
 
 var stage = {

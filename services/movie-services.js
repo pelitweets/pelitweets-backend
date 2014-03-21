@@ -20,6 +20,7 @@ var findAllMovies = function (options) {
         .select('_id '+
                 'movie_title '+
                 'movie_title_normalized '+
+                'movie_id_normalized ' +
                 'movie_original_title '+
                 'movie_runtime '+
                 'movie_plot '+
@@ -175,9 +176,12 @@ var createOrUpdateMovie = function(options) {
         console.log("onError function not implemented");
     };
 
+    var movie_title_normalized = Normalize.normalizeTitle(options.movie_title);
+
     var movie = options.movie || new Movie({
         movie_title:            options.movie_title,
-        movie_title_normalized: Normalize.normalizeTitle(options.movie_title),
+        movie_title_normalized: movie_title_normalized,
+        movie_id_normalized:    movie_title_normalized+'-'+options.movie._id,
         movie_original_title:   options.movie_original_title,
         movie_runtime:          options.movie_runtime,
         movie_plot:             options.movie_plot,
@@ -220,8 +224,12 @@ var findMovieByIdAndUpdate = function(options) {
         movieId: options.movieId,
         onSuccess: function(movie) {
 
+            
+            var movie_title_normalized = Normalize.normalizeTitle(options.movie_title);
+            
             movie.movie_title            = options.movie_title;
-            movie.movie_title_normalized = Normalize.normalizeTitle(options.movie_title);
+            movie.movie_title_normalized = movie_title_normalized;
+            movie.movie_id_normalized    = movie_title_normalized+'-'+options.movie._id;
             movie.movie_original_title   = options.movie_original_title;
             movie.movie_runtime          = options.movie_runtime;
             movie.movie_plot             = options.movie_plot;
