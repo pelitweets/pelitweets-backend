@@ -35,7 +35,7 @@ var sendTweet = function(movie) {
         
         if ( tweetText.length < (140-45) ) {
 
-            var url = 'http://pelitweets.com/';
+            var url = 'http://pelitweets.com/#/'+movie._id;
             tweetText = tweetText+' > '+ url;
         }
 
