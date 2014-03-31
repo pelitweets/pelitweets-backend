@@ -26,7 +26,7 @@ module.exports = function(app) {
 
         console.log('GET - routes/movie-routes.js/findAllMoviesByRating');
 
-        MovieService.findMoviesToUpdate({
+        MovieService.findAllMoviesByRating({
 
             onSuccess: function(movies) {
                 res.jsonp(movies);
@@ -101,7 +101,7 @@ module.exports = function(app) {
             }
         });
     };
-
+movies-by-rating
     // DELETE - Delete a movie with specified ID
     var deleteMovie = function(req, res) {
 
