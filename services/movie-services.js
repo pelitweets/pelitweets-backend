@@ -53,6 +53,54 @@ var findAllMovies = function (options) {
 };
 
 
+var findAllMoviesByRating = function (options) {
+
+    console.log('services/movie-services.js/findAllMovies');
+    //console.log('options=', options);
+
+    options.onSuccess = options.onSuccess || function() {
+        console.log("onSuccess function not implemented");
+    };
+    options.onError   = options.onError   || function() {
+        console.log("onError function not implemented");
+    };
+
+    Movie.find({})
+        .sort({'movie_rating_average': -1})
+        .select('_id '+
+                'movie_title '+
+                'movie_title_normalized '+
+                'movie_id_normalized ' +
+                'movie_original_title '+
+                'movie_runtime '+
+                'movie_plot '+
+                'movie_year '+
+                'movie_release_date '+
+                'movie_country '+
+                'movie_rating_fa '+
+                'movie_rating_imdb '+
+                'movie_rating_score '+
+                'movie_rating_score_tag '+
+                'movie_rating_average '+
+                'movie_official_web '+
+                'movie_poster_link '+
+                'movie_analyzed_date')
+        .limit(Config.properties.rowLimit)
+        .exec(function(error, movies) {
+
+        if(!error) {
+
+            printMovies(movies);
+            options.onSuccess(movies);
+
+        } else {
+
+            console.log('ERROR retrieving movies: ' + error);
+            options.onError(error);
+        }
+    });
+};
+
 var findMoviesToUpdate = function(options) {
 
     console.log('services/movie-services.js/findAllMovies');
@@ -66,7 +114,7 @@ var findMoviesToUpdate = function(options) {
     };
 
     Movie.find({})
-        .where('movie_rating_score').equals('NaN')
+        .where('movie_rating_score').in(['NaN', '-', null])
         .sort({'movie_analyzed_date': 1})
         .limit(Config.properties.rowLimit)
     
@@ -85,7 +133,7 @@ var findMoviesToUpdate = function(options) {
     });
 };
 
-var findMovieByTitle = function(options) {
+var searchByTitle = function(options) {
 
     console.log('services/movie-services.js/findMovieByTitle');
     //console.log('options=', options);
@@ -94,33 +142,25 @@ var findMovieByTitle = function(options) {
     options.onSuccess   = options.onSuccess || function() {
         console.log("onSuccess function not implemented");
     };
-    options.onNotFound  = options.onNotFound  || function() {
-        console.log("onNotFound function not implemented");
-    };
     options.onError = options.onError     || function() {
         console.log("onError function not implemented");
     };
 
-    Movie.find({'movieText':options.movieTitle})
-        .limit(1)
-        .exec(function(error, movie) {
+    Movie.find({$or:[
+            {'movie_title': new RegExp(options.movieTitle, 'i')},
+            {'movie_original_title': new RegExp(options.movieTitle, 'i')}]})
+        .limit(Config.properties.rowLimit)
+        .exec(function(error, movies) {
 
         if(!error) {
 
-            if(movie.length > 0) {
+            printMovies(movies);
+            options.onSuccess(movies);
 
-                printMovie(movie[0], 'received');
-                options.onSuccess(movie[0]);
-
-            } else {
-
-                console.log('movie "' + options.movieText + '" not found');
-                options.onNotFound();
-            }
         } else {
 
-            console.log('ERROR retrieving movie with movieId="'
-                + options.movieId + '": ' + error);
+            console.log('ERROR retrieving movie with title="'
+                + options.movieText + '": ' + error);
             options.onError(error);
         }
     });
@@ -312,9 +352,10 @@ var printMovie = function(movie, message) {
 };
 
 exports.findAllMovies          = findAllMovies;
+exports.findAllMoviesByRating  = findAllMoviesByRating;
 exports.findMoviesToUpdate     = findMoviesToUpdate;
 exports.findMovieById          = findMovieById;
-exports.findMovieByTitle       = findMovieByTitle;
+exports.searchByTitle          = searchByTitle;
 exports.createOrUpdateMovie    = createOrUpdateMovie;
 exports.findMovieByIdAndUpdate = findMovieByIdAndUpdate;
 exports.findMovieByIdAndRemove = findMovieByIdAndRemove;

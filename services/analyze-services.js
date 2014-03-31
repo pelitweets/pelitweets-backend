@@ -80,7 +80,7 @@ var searchTweets = function(options) {
 
     SearchTweets.searchTweets({
 
-        textToSearch: 'peli ' + options.movie.movie_title,
+        textToSearch: 'pelicula ' + options.movie.movie_title,
 
         onSuccess: function(tweets, tweetsText) {
 
@@ -144,14 +144,14 @@ var updateRatings = function(options) {
         sumRating = sumRating + parseFloat(movie.movie_rating_fa);
         ratings = ratings + 1;
     } else {
-        movie.movie_rating_fa = 'NaN';
+        movie.movie_rating_fa = '-';
     }
 
     if ( Util.isNumber(movie.movie_rating_imdb) ) {
         sumRating = sumRating + parseFloat(movie.movie_rating_imdb);
         ratings = ratings + 1;
     } else {
-        movie.movie_rating_imdb = 'NaN';
+        movie.movie_rating_imdb = '-';
     }
 
     if ( Util.isNumber(options.score) ) {
@@ -159,7 +159,7 @@ var updateRatings = function(options) {
         ratings = ratings + 1;
         movie.movie_rating_score = options.score;
     } else {
-        movie.movie_rating_score = 'NaN';
+        movie.movie_rating_score = '-';
     }
 
     movie.movie_rating_average = Util.roundWithDecimals((sumRating / ratings), 1);
@@ -167,7 +167,7 @@ var updateRatings = function(options) {
     if ( Util.isNumber(movie.movie_rating_average) ) {
         SendTweet.sendTweet(movie);
     } else {
-        movie.movie_rating_average = 'NaN';
+        movie.movie_rating_average = '-';
     }
 
     movie.movie_rating_score_tag = options.scoreTag;

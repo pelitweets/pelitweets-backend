@@ -15,7 +15,7 @@ var development = {
         result_type         : "",  // none(:mixed), recent or popular
     },
     sendTweet               : false,
-    cacheInMinutes          : 1,
+    cacheInMinutes          : 10,
     textalytics         : {
         key                 : process.env.TEXTALYTICS_KEY,
         url                 : 'https://textalytics.com/core/sentiment-1.1',
