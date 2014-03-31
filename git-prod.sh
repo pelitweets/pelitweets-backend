@@ -28,18 +28,18 @@ if [ "$OPTION" == "y" ]; then
     #git push && \
 
     git push heroku master && \
-    heroku config:add NODE_ENV=production && \
-    heroku config:add TWITTER_CONSUMER_KEY=$TWITTER_CONSUMER_KEY && \
-    heroku config:add TWITTER_CONSUMER_SECRET=$TWITTER_CONSUMER_SECRET && \
-    heroku config:add TWITTER_ACCESS_TOKEN_KEY=$TWITTER_ACCESS_TOKEN_KEY && \
-    heroku config:add TWITTER_ACCESS_TOKEN_SECRET=$TWITTER_ACCESS_TOKEN_SECRET && \
-    heroku config:add TWITTER_ACOUNT=$TWITTER_ACOUNT && \
-    heroku config:add HEROKU_APP_NAME=$HEROKU_APP_NAME && \
-    heroku config:add TEXTALYTICS_KEY=$TEXTALYTICS_KEY && \
-    heroku config:add MONGODB_URL=$MONGODB_URL && \
-    heroku logs && \
+    #heroku config:add NODE_ENV=production && \
+    #heroku config:add TWITTER_CONSUMER_KEY=$TWITTER_CONSUMER_KEY && \
+    #heroku config:add TWITTER_CONSUMER_SECRET=$TWITTER_CONSUMER_SECRET && \
+    #heroku config:add TWITTER_ACCESS_TOKEN_KEY=$TWITTER_ACCESS_TOKEN_KEY && \
+    #heroku config:add TWITTER_ACCESS_TOKEN_SECRET=$TWITTER_ACCESS_TOKEN_SECRET && \
+    #heroku config:add TWITTER_ACOUNT=$TWITTER_ACOUNT && \
+    #heroku config:add HEROKU_APP_NAME=$HEROKU_APP_NAME && \
+    #heroku config:add TEXTALYTICS_KEY=$TEXTALYTICS_KEY && \
+    #heroku config:add MONGODB_URL=$MONGODB_URL && \
+    #heroku logs && \
+    #heroku apps:rename $HEROKU_APP_NAME && \
+    
     heroku open
-
-    #heroku apps:rename $HEROKU_APP_NAME
 
 fi
