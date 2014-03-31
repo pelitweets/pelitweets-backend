@@ -101,7 +101,7 @@ module.exports = function(app) {
             }
         });
     };
-movies-by-rating
+
     // DELETE - Delete a movie with specified ID
     var deleteMovie = function(req, res) {
 
