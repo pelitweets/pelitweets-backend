@@ -1,0 +1,31 @@
+{
+  "name": "pelitweets",
+  "version": "0.0.1",
+  "author": "Pelitweets <pelitweets@gmail.com>",
+  "contributors": [
+    {
+      "name": "Adolfo Sanz de Diego",
+      "email": "asanzdiego@gmail.com"
+    },
+    {
+      "name": "Jorge Arevalo",
+      "email": "jorgeas80@gmail.com"
+    },
+    {
+      "name": "Carlos Azaustre",
+      "email": "cazaustre@gmail.com"
+    }
+  ],
+  "repository": {
+    "type": "git",
+    "url": "http://github.com/carlosazaustre/pelitweets.git"
+  },
+  "dependencies": {
+    "express": "2.*",
+    "mongoose": "3.*",
+    "twitter": "*",
+    "sanitizer": "*",
+    "request": "*",
+    "supervisor": "*"
+  }
+}
