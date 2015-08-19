@@ -23,7 +23,7 @@ var development = {
     },
     rowLimit                : 1,
     showAllRoutes           : true,
-    searchAndAnalyzeTweets  : false
+    searchAndAnalyzeTweets  : true
 }
 
 var stage = {
