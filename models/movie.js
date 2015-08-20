@@ -18,7 +18,7 @@ var movie = new Schema({
     movie_rating_average:   { type: String, required: true, default: '-' },
     movie_official_web:     { type: String, required: false, match: /^(http|https):\/\/[^ "]+$/ },
     movie_poster_link:      { type: String, required: true, match: /^(http|https):\/\/[^ "]+$/ },
-    movie_analyzed_date:    { type: Date,   required: true, default: Date.now },
+    movie_analyzed_date:    { type: Date,   required: true },
     movie_text_analyzed:    { type: String, required: false },
     movie_tweets_analyzed:  []
 });
