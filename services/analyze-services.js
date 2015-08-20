@@ -63,7 +63,10 @@ var analyzeAllMovies = function() {
 
 var isCacheExpired = function(movie) {
 
+    //console.log('services/analyze-services.js/isCacheExpired -> movie.movie_title', movie.movie_title);
+
     var cacheInMinutes = Config.properties.cacheInMinutes;
+    //console.log('services/analyze-services.js/isCacheExpired -> cacheInMinutes', cacheInMinutes);
 
     if ( typeof movie.movie_analyzed_date === "undefined" ) {
 
@@ -71,7 +74,11 @@ var isCacheExpired = function(movie) {
 
     } else {
 
-        var expirationDate = new Date(movie.movie_analyzed_date.getTime() + cacheInMinutes*60000);
+        //console.log('services/analyze-services.js/isCacheExpired -> movie.movie_analyzed_date', movie.movie_analyzed_date);
+
+        var expirationDate = new Date(movie.movie_analyzed_date.getTime() + cacheInMinutes*60000);        
+        //console.log('services/analyze-services.js/isCacheExpired -> expirationDate', expirationDate);
+
         return expirationDate > Date.now();
     }
 };

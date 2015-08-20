@@ -43,13 +43,13 @@ var stage = {
         result_type         : "",  // none(:mixed), recent or popular
     },
     sendTweet               : false,
-    cacheInMinutes          : 120,
+    cacheInMinutes          : 1,
     textalytics         : {
         key                 : process.env.TEXTALYTICS_KEY,
         url                 : 'https://api.meaningcloud.com/sentiment-2.0',
         model               : 'general_es' // none (automatic), general_es, general_en, general_fr
     },
-    rowLimit                : 20,
+    rowLimit                : 100,
     showAllRoutes           : true,
     searchAndAnalyzeTweets  : true
 }
