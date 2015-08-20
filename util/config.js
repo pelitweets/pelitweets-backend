@@ -19,7 +19,7 @@ var development = {
     textalytics         : {
         key                 : process.env.TEXTALYTICS_KEY,
         url                 : 'https://api.meaningcloud.com/sentiment-2.0',
-        model               : 'general_es' // none (automatic), general_es, general_en, general_fr
+        model               : 'general_es' // auto, general_es, general_en, general_fr
     },
     rowLimit                : 10,
     showAllRoutes           : true,
@@ -47,7 +47,7 @@ var stage = {
     textalytics         : {
         key                 : process.env.TEXTALYTICS_KEY,
         url                 : 'https://api.meaningcloud.com/sentiment-2.0',
-        model               : 'general_es' // none (automatic), general_es, general_en, general_fr
+        model               : 'general_es' // auto, general_es, general_en, general_fr
     },
     rowLimit                : 100,
     showAllRoutes           : true,
@@ -75,7 +75,7 @@ var production = {
     textalytics         : {
         key                 : process.env.TEXTALYTICS_KEY,
         url                 : 'https://api.meaningcloud.com/sentiment-2.0',
-        model               : 'general_es' // none (automatic), general_es, general_en, general_fr
+        model               : 'general_es' // auto, general_es, general_en, general_fr
     },
     rowLimit                : 100,
     showAllRoutes           : false,
