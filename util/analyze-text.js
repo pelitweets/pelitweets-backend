@@ -47,7 +47,7 @@ var analyzeText = function(options) {
 
         //console.log(json);
 
-        if (!json.score)  {
+        if (!json.score_tag)  {
 
             //console.log('error =', data);
             analyzeTextOptions.onError(json);
@@ -55,13 +55,31 @@ var analyzeText = function(options) {
         } else {
 
 
-            var score = ( (json.score*10) + 10 ) / 2;
-            score = util.roundWithDecimals(score, 1);
+            var score = 5;
             var scoreTag = json.score_tag;
+            console.log('scoreTag =', scoreTag);
+
+            switch(scoreTag) {
+                case 'P+':
+                    score = 9;
+                    break;
+                case 'P':
+                    score = 7;
+                    break;
+                case 'N':
+                    score = 3;
+                    break;
+                case 'N+':
+                    score = 1;
+                    break;
+            }
+            console.log('score =', score);
+
             var status = json.status || {};
             var credits = json.status.credits;
             var remainingCredits = json.status.remaining_credits;
 
+            
             console.log('requestCredits =', credits);
             console.log('remainingCredits =', remainingCredits);
             var percentage = Math.round((remainingCredits*100)/500000);

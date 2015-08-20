@@ -18,10 +18,10 @@ var development = {
     cacheInMinutes          : 10,
     textalytics         : {
         key                 : process.env.TEXTALYTICS_KEY,
-        url                 : 'https://textalytics.com/core/sentiment-1.1',
-        model               : 'es-general' // none (automatic), es-general, en-general, fr-general
+        url                 : 'https://api.meaningcloud.com/sentiment-2.0',
+        model               : 'general_es' // none (automatic), general_es, general_en, general_fr
     },
-    rowLimit                : 1,
+    rowLimit                : 10,
     showAllRoutes           : true,
     searchAndAnalyzeTweets  : true
 }
@@ -46,8 +46,8 @@ var stage = {
     cacheInMinutes          : 120,
     textalytics         : {
         key                 : process.env.TEXTALYTICS_KEY,
-        url                 : 'https://textalytics.com/core/sentiment-1.1',
-        model               : 'es-general' // none (automatic), es-general, en-general, fr-general
+        url                 : 'https://api.meaningcloud.com/sentiment-2.0',
+        model               : 'general_es' // none (automatic), general_es, general_en, general_fr
     },
     rowLimit                : 20,
     showAllRoutes           : true,
@@ -74,8 +74,8 @@ var production = {
     cacheInMinutes          : 1440,
     textalytics         : {
         key                 : process.env.TEXTALYTICS_KEY,
-        url                 : 'https://textalytics.com/core/sentiment-1.1',
-        model               : 'es-general' // none (automatic), es-general, en-general, fr-general
+        url                 : 'https://api.meaningcloud.com/sentiment-2.0',
+        model               : 'general_es' // none (automatic), general_es, general_en, general_fr
     },
     rowLimit                : 100,
     showAllRoutes           : false,
