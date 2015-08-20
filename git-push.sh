@@ -20,8 +20,8 @@ if [ "$OPTION" == "y" ]; then
 
     read -p "Write the commit message: " MESSAGE
 
-    git add . && \
     writeVersion > util/version.js && \
+    git add . && \
     more util/version.js && \
     git commit -m "$MESSAGE" && \
     git push

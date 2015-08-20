@@ -38,10 +38,12 @@ var analyzeAllMovies = function() {
 
                     if ( Config.properties.searchAndAnalyzeTweets ) {
 
+                        console.log('SEARCH AND ANALYZE TWEETS ' + movies[i].movie_title.trim());
                         searchTweets(options);
 
                     } else {
 
+                        console.log('ONLY UPDATE ' + movies[i].movie_title.trim());
                         options.tweets = options.movie.tweets;
                         options.tweetsText = options.movie.tweetsText;
                         options.score = options.movie.score;
@@ -76,7 +78,7 @@ var isCacheExpired = function(movie) {
 
 var searchTweets = function(options) {
 
-    //console.log('services/analyze-services.js/searchTweets ->', options.movie.movie_title);
+    console.log('services/analyze-services.js/searchTweets ->', options.movie.movie_title);
 
     SearchTweets.searchTweets({
 
@@ -109,7 +111,7 @@ var searchTweets = function(options) {
 
 var processTweets = function(options) {
 
-    //console.log('services/analyze-services.js/processTweets');
+    console.log('services/analyze-services.js/processTweets');
     //console.log('options =', options);
 
     AnalyzeText.analyzeText({
@@ -134,6 +136,9 @@ var processTweets = function(options) {
 };
 
 var updateRatings = function(options) {
+
+    console.log('services/analyze-services.js/updateRatings');
+    //console.log('options =', options);
 
     var movie = options.movie;
 
@@ -177,7 +182,7 @@ var updateRatings = function(options) {
 
 var updateMovie = function(options) {
 
-    //console.log('services/analyze-services.js/updateMovie');
+    console.log('services/analyze-services.js/updateMovie');
     //console.log('options =', options);
 
     var movie = updateRatings(options);

@@ -22,8 +22,8 @@
   },
   "dependencies": {
     "express": "3.*",
-    "mongoose": "3.*",
-    "twitter": "*",
+    "mongoose": "4.*",
+    "twitter": "0.*",
     "sanitizer": "*",
     "request": "*",
     "supervisor": "*"
