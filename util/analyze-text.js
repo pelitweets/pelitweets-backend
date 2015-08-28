@@ -79,7 +79,7 @@ var analyzeText = function(options) {
             var credits = json.status.credits;
             var remainingCredits = json.status.remaining_credits;
 
-            
+
             console.log('requestCredits =', credits);
             console.log('remainingCredits =', remainingCredits);
             var percentage = Math.round((remainingCredits*100)/500000);
